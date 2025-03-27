@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ProfileCategory } from '../types';
 import { useProfile } from '../context/ProfileContext';
 
-export function AddProfileField() {
+interface AddProfileFieldProps {
+  initialCategory?: ProfileCategory;
+}
+
+export function AddProfileField({ initialCategory = 'personal' }: AddProfileFieldProps) {
   const { dispatch } = useProfile();
   const [isAdding, setIsAdding] = useState(false);
   const [label, setLabel] = useState('');
   const [value, setValue] = useState('');
-  const [category, setCategory] = useState<ProfileCategory>('personal');
+  const [category, setCategory] = useState<ProfileCategory>(initialCategory);
+
+  // Update category if initialCategory changes
+  useEffect(() => {
+    setCategory(initialCategory);
+  }, [initialCategory]);
 
   const categories: ProfileCategory[] = [
     'personal',
@@ -37,14 +46,14 @@ export function AddProfileField() {
     // Reset form
     setLabel('');
     setValue('');
-    setCategory('personal');
+    setCategory(initialCategory);
     setIsAdding(false);
   };
 
   const handleCancel = () => {
     setLabel('');
     setValue('');
-    setCategory('personal');
+    setCategory(initialCategory);
     setIsAdding(false);
   };
 
@@ -52,7 +61,7 @@ export function AddProfileField() {
     return (
       <button
         onClick={() => setIsAdding(true)}
-        className="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors mb-4"
+        className="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
       >
         Add New Field
       </button>
@@ -60,7 +69,7 @@ export function AddProfileField() {
   }
 
   return (
-    <div className="bg-white rounded-md shadow-md p-4 mb-4">
+    <div className="bg-white rounded-md shadow-sm p-4">
       <h3 className="text-lg font-medium text-gray-900 mb-3">Add New Field</h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

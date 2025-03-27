@@ -1,54 +1,61 @@
 import { ProfileField } from '../types';
 
 export const exampleProfileFields: ProfileField[] = [
+  // Personal Information
   {
     id: 'personal-1',
     label: 'Full Name',
-    value: 'John Smith',
+    value: 'Suchith M S',
     category: 'personal'
   },
   {
     id: 'personal-2',
     label: 'Email',
-    value: 'john.smith@example.com',
+    value: 'mssuchith4@gmail.com',
     category: 'personal'
   },
   {
     id: 'personal-3',
     label: 'Phone',
-    value: '(555) 123-4567',
+    value: '+91-9019526435',
     category: 'personal'
   },
   {
     id: 'personal-4',
-    label: 'LinkedIn',
-    value: 'linkedin.com/in/johnsmith',
+    label: 'Location',
+    value: 'Bengaluru, KA, India',
     category: 'personal'
   },
   {
     id: 'personal-5',
-    label: 'Location',
-    value: 'New York, NY',
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/suchithms',
     category: 'personal'
   },
+
+  // Education
   {
     id: 'education-1',
-    label: 'Bachelor of Science',
-    value: 'Computer Science\nNew York University\n2015-2019',
+    label: 'Bachelor\'s Degree',
+    value: 'Bachelor\'s, Computer Science\nMVJ college of engineering\n2021 - 2025',
     category: 'education'
   },
+
+  // Experience
   {
     id: 'experience-1',
     label: 'Software Developer',
-    value: 'ABC Technology Inc.\nJan 2020 - Present\n- Led development of frontend applications using React and TypeScript\n- Collaborated with UX team to improve user experience\n- Implemented automated testing with Jest',
+    value: 'ABC Technology Inc.\nJan 2023 - Present\n- Led development of frontend applications using React and TypeScript\n- Collaborated with UX team to improve user experience\n- Implemented automated testing with Jest',
     category: 'experience'
   },
   {
     id: 'experience-2',
     label: 'Intern Developer',
-    value: 'XYZ Solutions\nMay 2019 - Dec 2019\n- Assisted in developing web applications\n- Created documentation for the codebase\n- Participated in code reviews',
+    value: 'XYZ Solutions\nMay 2022 - Dec 2022\n- Assisted in developing web applications\n- Created documentation for the codebase\n- Participated in code reviews',
     category: 'experience'
   },
+
+  // Skills
   {
     id: 'skills-1',
     label: 'Programming Languages',
@@ -67,10 +74,12 @@ export const exampleProfileFields: ProfileField[] = [
     value: 'Node.js, Express, Django, Spring Boot',
     category: 'skills'
   },
+
+  // References
   {
     id: 'references-1',
     label: 'Jane Doe',
     value: 'Senior Developer at ABC Technology\njanedoe@example.com\n(555) 987-6543',
     category: 'references'
   }
-];
+]; 

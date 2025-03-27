@@ -1,11 +1,11 @@
 import { ProfileProvider } from './context/ProfileContext';
-import { ProfileManager } from './components/ProfileManager';
+import { ProfileLayout } from './components/layout/ProfileLayout';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-[600px] w-[800px] bg-gray-50">
       <ProfileProvider>
-        <ProfileManager />
+        <ProfileLayout />
       </ProfileProvider>
     </div>
   );

@@ -4,10 +4,12 @@ A Chrome extension to store and manage job application information for quick for
 
 ## Features
 
+- Modern dual-panel design with sidebar categories and profile display
 - Store personal information, education, experience, skills, and references
 - Organize information into categories
-- Quickly copy information to clipboard by clicking on fields
-- Search functionality to find specific fields
+- Quickly copy information to clipboard by clicking on any field
+- Visual feedback with highlighted items when copied
+- Comes with preset example data to get started quickly
 - Data is synced across devices using Chrome storage
 
 ## Installation
@@ -48,11 +50,11 @@ A Chrome extension to store and manage job application information for quick for
 ## Usage
 
 1. Click on the extension icon in your Chrome toolbar to open the extension
-2. Add your information by clicking the "Add New Field" button
-3. Fill in the field label, value, and select a category
-4. To copy any field value to clipboard, click on the "Copy" button or the field value itself
-5. Edit or delete fields as needed
-6. Use the search bar to find specific information
+2. Browse different categories in the left sidebar (Personal, Education, Experience, etc.)
+3. Click any field in the right panel to copy its value to your clipboard
+4. Add new fields by clicking "Add New Field" at the bottom of the sidebar
+5. Fill in the field label, value, and keep or change the current category
+6. All data is automatically saved and synced if you're signed into Chrome
 
 ## Project Structure
 
@@ -63,6 +65,7 @@ job-application-assistant/
 │   └── manifest.json      # Extension manifest
 ├── src/
 │   ├── components/        # React components
+│   │   └── layout/        # UI layout components
 │   ├── context/           # Context for state management
 │   ├── hooks/             # Custom React hooks
 │   ├── types/             # TypeScript type definitions
