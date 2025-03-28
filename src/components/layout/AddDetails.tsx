@@ -16,6 +16,7 @@ export function AddDetails() {
   const [selectedCategory, setSelectedCategory] = useState<ProfileCategory>('personal');
   const [label, setLabel] = useState('');
   const [value, setValue] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,67 +32,100 @@ export function AddDetails() {
       }
     });
 
+    // Show success message
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 2000);
+
+    // Reset form
     setLabel('');
     setValue('');
   };
 
   return (
-    <div className="h-[calc(500px-48px)] overflow-auto">
+    <div className="h-full overflow-auto">
       <div className="p-4">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Add New Information</h2>
-        
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-2">
-            {CATEGORIES.map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`p-3 rounded-lg text-left transition-colors ${
-                  selectedCategory === cat.id
-                    ? 'bg-blue-50 border-blue-200 border'
-                    : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'
-                }`}
-              >
-                <span className="text-xl mb-1">{cat.icon}</span>
-                <p className="text-sm font-medium text-gray-900">{cat.label}</p>
-              </button>
-            ))}
+          {/* Category selection */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Select Category
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {CATEGORIES.map(cat => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`p-3 rounded-lg text-left transition-colors ${
+                    selectedCategory === cat.id
+                      ? 'bg-blue-50 border-blue-300 border'
+                      : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'
+                  }`}
+                >
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xl">{cat.icon}</span>
+                    <p className="text-sm font-medium text-gray-900">{cat.label}</p>
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-3">
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-3 bg-white rounded-lg border border-gray-200 p-4">
+            <h3 className="font-medium text-gray-900 mb-2">
+              {selectedCategory === 'skills' ? 'Add Skills' : 'Add Information'}
+            </h3>
+            
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Label
+                {selectedCategory === 'skills' ? 'Skill Type' : 'Label'}
               </label>
               <input
                 type="text"
                 value={label}
                 onChange={(e) => setLabel(e.target.value)}
                 className="w-full p-2 border rounded-md text-sm"
-                placeholder="e.g. Full Name"
+                placeholder={selectedCategory === 'skills' ? 'e.g. Programming Languages' : 'e.g. Full Name'}
                 required
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Value
+                {selectedCategory === 'skills' ? 'Skills' : 'Value'}
               </label>
               <textarea
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 className="w-full p-2 border rounded-md text-sm"
                 rows={3}
-                placeholder="Enter the information"
+                placeholder={selectedCategory === 'skills' 
+                  ? 'Enter skills separated by commas (e.g. JavaScript, React, Node.js)'
+                  : 'Enter information'}
               />
+              {selectedCategory === 'skills' && (
+                <p className="text-xs text-gray-500 mt-1">
+                  Separate multiple skills with commas
+                </p>
+              )}
             </div>
 
             <button
               type="submit"
               className="w-full py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
             >
-              Add Field
+              Add {selectedCategory === 'skills' ? 'Skills' : 'Information'}
             </button>
+            
+            {showSuccess && (
+              <div className="flex items-center justify-center text-sm text-green-600 font-medium mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                Successfully added!
+              </div>
+            )}
           </form>
         </div>
       </div>

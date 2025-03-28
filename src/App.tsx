@@ -7,7 +7,12 @@ function App() {
   const [activeTab, setActiveTab] = useState<'add' | 'profile'>('add');
 
   return (
-    <div className="w-[400px] h-[500px] bg-white">
+    <div className="w-[400px] h-[500px] bg-white flex flex-col">
+      {/* Header with title */}
+      <div className="bg-blue-600 text-white py-3 px-4 text-center shadow-sm">
+        <h1 className="text-lg font-bold">Job Application Assistant</h1>
+      </div>
+      
       {/* Navigation Bar */}
       <nav className="flex border-b border-gray-200">
         <button
@@ -33,7 +38,9 @@ function App() {
       </nav>
 
       <ProfileProvider>
-        {activeTab === 'add' ? <AddDetails /> : <ProfileLayout />}
+        <div className="flex-1 overflow-hidden">
+          {activeTab === 'add' ? <AddDetails /> : <ProfileLayout />}
+        </div>
       </ProfileProvider>
     </div>
   );
