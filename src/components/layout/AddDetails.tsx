@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useProfile } from '../../context/ProfileContext';
 import { ProfileCategory } from '../../types';
 
-const CATEGORIES: { id: ProfileCategory; label: string; icon: string }[] = [
-  { id: 'personal', label: 'Personal Information', icon: '👤' },
-  { id: 'education', label: 'Education', icon: '🎓' },
-  { id: 'experience', label: 'Work Experience', icon: '💼' },
-  { id: 'skills', label: 'Skills', icon: '🛠️' },
-  { id: 'references', label: 'References', icon: '📞' },
-  { id: 'custom', label: 'Custom Fields', icon: '✨' }
+const CATEGORIES: { id: ProfileCategory; label: string }[] = [
+  { id: 'personal', label: 'Personal Information'},
+  { id: 'education', label: 'Education' },
+  { id: 'experience', label: 'Work Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'references', label: 'References' },
+  { id: 'custom', label: 'Custom Fields' }
 ];
 
 export function AddDetails() {
@@ -63,7 +63,6 @@ export function AddDetails() {
                   }`}
                 >
                   <div className="flex items-center space-x-2">
-                    <span className="text-xl">{cat.icon}</span>
                     <p className="text-sm font-medium text-gray-900">{cat.label}</p>
                   </div>
                 </button>

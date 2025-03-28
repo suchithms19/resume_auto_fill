@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { ProfileField } from '../../types';
 
 const CATEGORIES = [
-  { id: 'personal', label: 'Personal Information', icon: '👤' },
-  { id: 'education', label: 'Education', icon: '🎓' },
-  { id: 'experience', label: 'Work Experience', icon: '💼' },
-  { id: 'skills', label: 'Skills', icon: '🛠️' },
-  { id: 'references', label: 'References', icon: '📞' },
-  { id: 'custom', label: 'Custom Fields', icon: '✨' }
+  { id: 'personal', label: 'Personal Information' },
+  { id: 'education', label: 'Education' },
+  { id: 'experience', label: 'Work Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'references', label: 'References' },
+  { id: 'custom', label: 'Custom Fields' }
 ];
 
 export function ProfileLayout() {
@@ -56,7 +56,6 @@ export function ProfileLayout() {
       <div className="p-4 space-y-6">
         {/* Profile title at the top */}
         <div className="text-center mb-4">
-          <h1 className="text-lg font-bold text-gray-900">My Profile</h1>
           <p className="text-xs text-gray-500">Click any item to copy to clipboard</p>
         </div>
         
@@ -67,7 +66,6 @@ export function ProfileLayout() {
           return (
             <div key={category.id} className="space-y-2">
               <div className="flex items-center space-x-2">
-                <span className="text-xl">{category.icon}</span>
                 <h2 className="text-sm font-semibold text-gray-900">{category.label}</h2>
               </div>
 
