@@ -23,7 +23,6 @@ export function AddProfileField({ initialCategory = 'personal' }: AddProfileFiel
     'education',
     'experience',
     'skills',
-    'references',
     'custom'
   ];
 

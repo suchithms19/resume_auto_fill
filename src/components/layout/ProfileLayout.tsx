@@ -287,7 +287,7 @@ export function ProfileLayout() {
       <div className="max-w-3xl mx-auto p-5 my-4 bg-white rounded-xl shadow-sm space-y-6">
         {/* Profile title at the top */}
         <div className="text-center mb-6">
-          <p className="text-sm text-white bg-gradient-to-r from-blue-500 to-indigo-600 p-2.5 rounded-lg shadow-sm">
+          <p className="text-xs text-gray-700 bg-blue-50 p-2.5 rounded-lg shadow-sm">
             Click any item to copy to clipboard
           </p>
         </div>

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useProfile } from '../../context/ProfileContext';
 import { ProfileCategory } from '../../types';
 
-const CATEGORIES: { id: ProfileCategory; label: string }[] = [
-  { id: 'personal', label: 'Personal Information'},
-  { id: 'education', label: 'Education' },
-  { id: 'experience', label: 'Work Experience' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'custom', label: 'Custom Fields' }
+const CATEGORIES: { id: ProfileCategory; label: string; emoji: string }[] = [
+  { id: 'personal', label: 'Personal Info', emoji: '👤' },
+  { id: 'education', label: 'Education', emoji: '🎓' },
+  { id: 'experience', label: 'Work Experience', emoji: '💼' },
+  { id: 'skills', label: 'Skills', emoji: '🛠️' },
+  { id: 'custom', label: 'Custom Fields', emoji: '✨' }
 ];
 
 export function AddDetails() {
@@ -348,6 +348,7 @@ export function AddDetails() {
                   }`}
                 >
                   <div className="flex items-center space-x-2">
+                    <span className="text-xl">{cat.emoji}</span>
                     <p className="text-sm font-medium text-gray-900">{cat.label}</p>
                   </div>
                 </button>
@@ -356,7 +357,7 @@ export function AddDetails() {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-3 bg-white rounded-lg border border-gray-200 p-4">
+          <form onSubmit={handleSubmit} className="space-y-3 bg-white rounded-xl border border-gray-200 p-4">
             <h3 className="font-medium text-gray-900 mb-2">
               {selectedCategory === 'skills' ? 'Add Skills' : 
                selectedCategory === 'education' ? 'Add Education' : 
