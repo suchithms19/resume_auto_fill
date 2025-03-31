@@ -46,12 +46,108 @@ export function ProfileLayout() {
         </div>
       );
     }
-
+    
     // For other fields, render as normal
     return (
       <p className="text-sm text-gray-600 mt-1 whitespace-pre-wrap">
         {field.value || <span className="text-gray-400 italic">No value</span>}
       </p>
+    );
+  };
+  
+  // Custom renderer for education category
+  const renderEducationCategory = (fields: ProfileField[]) => {
+    return (
+      <div className="space-y-4 mt-3">
+        {fields.map(field => {
+          const lines = field.value.split('\n');
+          const degree = lines[0] || field.label;
+          const college = lines[1] || '';
+          const dateRange = lines[2]?.split(' - ') || ['', ''];
+          const startDate = dateRange[0] || '';
+          const endDate = dateRange[1] || '';
+          
+          return (
+            <div key={field.id} className="relative group">
+              <div className={`w-full p-4 rounded-xl border ${
+                copiedId?.startsWith(field.id) ? 'bg-green-50 border-green-200 shadow-sm' : 'bg-white border-gray-200 hover:bg-gray-50 group-hover:border-gray-300'
+              }`}>
+                {/* Degree as headline */}
+                <div className="flex justify-between items-center">
+                  <h3 
+                    onClick={() => handleCopy(degree, `${field.id}-degree`)}
+                    className={`text-base font-medium cursor-pointer transition-colors ${
+                      copiedId === `${field.id}-degree` ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'
+                    }`}
+                  >
+                    {degree}
+                  </h3>
+                  {copiedId?.startsWith(field.id) && (
+                    <span className="text-xs bg-green-100 text-green-600 font-medium px-2 py-1 rounded-full">
+                      
+                    </span>
+                  )}
+                </div>
+                
+                {/* College and dates as separate fields */}
+                <div className="mt-3 space-y-2 divide-y divide-gray-100">
+                  <div className="pb-2">
+                    <div className="text-xs font-medium text-gray-500 mb-1">College Name</div>
+                    <div 
+                      onClick={() => handleCopy(college, `${field.id}-college`)}
+                      className={`text-sm cursor-pointer transition-colors ${
+                        copiedId === `${field.id}-college` ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+                      }`}
+                    >
+                      {college}
+                    </div>
+                  </div>
+                  
+                  <div className="py-2">
+                    <div className="text-xs font-medium text-gray-500 mb-1">Start Date</div>
+                    <div 
+                      onClick={() => handleCopy(startDate, `${field.id}-start`)}
+                      className={`text-sm cursor-pointer transition-colors ${
+                        copiedId === `${field.id}-start` ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+                      }`}
+                    >
+                      {startDate}
+                    </div>
+                  </div>
+                  
+                  <div className="pt-2">
+                    <div className="text-xs font-medium text-gray-500 mb-1">End Date</div>
+                    <div 
+                      onClick={() => handleCopy(endDate, `${field.id}-end`)}
+                      className={`text-sm cursor-pointer transition-colors ${
+                        copiedId === `${field.id}-end` ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+                      }`}
+                    >
+                      {endDate}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Delete button */}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(field.id);
+                }}
+                className="absolute top-3 right-3 p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                title="Delete field"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 6h18"></path>
+                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          );
+        })}
+      </div>
     );
   };
 
@@ -95,6 +191,9 @@ export function ProfileLayout() {
                     </div>
                   ))}
                 </div>
+              ) : category.id === 'education' ? (
+                // Special rendering for education category
+                renderEducationCategory(fields)
               ) : (
                 // Normal rendering for other categories
                 <div className="space-y-3">
@@ -112,6 +211,7 @@ export function ProfileLayout() {
                           <span className="text-sm font-medium text-gray-900">{field.label}</span>
                           {copiedId === field.id && (
                             <span className="text-xs bg-green-100 text-green-600 font-medium px-2 py-1 rounded-full">
+                              
                             </span>
                           )}
                         </div>

@@ -36,8 +36,16 @@ export const exampleProfileFields: ProfileField[] = [
   // Education
   {
     id: 'education-1',
-    label: 'Bachelor\'s Degree',
+    label: 'Bachelor\'s, Computer Science',
     value: 'Bachelor\'s, Computer Science\nMVJ college of engineering\n2021 - 2025',
+    category: 'education'
+  },
+  
+  // Add another education example
+  {
+    id: 'education-2',
+    label: 'Master\'s, Data Science',
+    value: 'Master\'s, Data Science\nTech University\n2025 - 2027',
     category: 'education'
   },
 
