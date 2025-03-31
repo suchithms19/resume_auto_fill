@@ -82,17 +82,17 @@ export function AddDetails() {
       setDescription('');
     } else {
       // For other categories
-      if (!label.trim()) return;
-      
-      dispatch({
-        type: 'ADD_FIELD',
-        payload: {
-          id: `field-${Date.now()}`,
-          label: label.trim(),
-          value: value.trim(),
-          category: selectedCategory
-        }
-      });
+    if (!label.trim()) return;
+
+    dispatch({
+      type: 'ADD_FIELD',
+      payload: {
+        id: `field-${Date.now()}`,
+        label: label.trim(),
+        value: value.trim(),
+        category: selectedCategory
+      }
+    });
       
       // Reset general fields
       setLabel('');
