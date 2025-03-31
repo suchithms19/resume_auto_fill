@@ -7,7 +7,6 @@ const CATEGORY_LABELS: Record<ProfileCategory, string> = {
   education: 'Education',
   experience: 'Work Experience',
   skills: 'Skills',
-  references: 'References',
   custom: 'Custom Fields'
 };
 
@@ -16,7 +15,6 @@ const CATEGORY_ICONS: Record<ProfileCategory, string> = {
   education: '🎓',
   experience: '💼',
   skills: '🛠️',
-  references: '📞',
   custom: '✨'
 };
 
@@ -40,7 +38,6 @@ export function ProfileSidebar({ activeCategory, onSelectCategory }: ProfileSide
     'education',
     'experience',
     'skills',
-    'references',
     'custom'
   ];
 

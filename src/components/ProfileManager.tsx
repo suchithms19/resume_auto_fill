@@ -32,7 +32,6 @@ export function ProfileManager() {
     'education',
     'experience',
     'skills',
-    'references',
     'custom'
   ];
 

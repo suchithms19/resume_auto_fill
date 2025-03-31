@@ -81,13 +81,5 @@ export const exampleProfileFields: ProfileField[] = [
     label: 'Backend',
     value: 'Node.js, Express, Django, Spring Boot',
     category: 'skills'
-  },
-
-  // References
-  {
-    id: 'references-1',
-    label: 'Jane Doe',
-    value: 'Senior Developer at ABC Technology\njanedoe@example.com\n(555) 987-6543',
-    category: 'references'
   }
 ]; 

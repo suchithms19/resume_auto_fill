@@ -8,7 +8,6 @@ const CATEGORIES = [
   { id: 'education', label: 'Education', emoji: '🎓' },
   { id: 'experience', label: 'Work Experience', emoji: '💼' },
   { id: 'skills', label: 'Skills', emoji: '🛠️' },
-  { id: 'references', label: 'References', emoji: '👥' },
   { id: 'custom', label: 'Custom Fields', emoji: '✨' }
 ];
 

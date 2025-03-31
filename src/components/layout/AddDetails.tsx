@@ -7,7 +7,6 @@ const CATEGORIES: { id: ProfileCategory; label: string }[] = [
   { id: 'education', label: 'Education' },
   { id: 'experience', label: 'Work Experience' },
   { id: 'skills', label: 'Skills' },
-  { id: 'references', label: 'References' },
   { id: 'custom', label: 'Custom Fields' }
 ];
 
@@ -80,19 +79,34 @@ export function AddDetails() {
       setExpEndDate('');
       setLocation('');
       setDescription('');
+    } else if (selectedCategory === 'skills') {
+      if (!value.trim()) return;
+      
+      dispatch({
+        type: 'ADD_FIELD',
+        payload: {
+          id: `skills-${Date.now()}`,
+          label: 'Skills', // Use a default label for skills
+          value: value.trim(),
+          category: selectedCategory
+        }
+      });
+      
+      // Reset skills field
+      setValue('');
     } else {
       // For other categories
-    if (!label.trim()) return;
+      if (!label.trim()) return;
 
-    dispatch({
-      type: 'ADD_FIELD',
-      payload: {
-        id: `field-${Date.now()}`,
-        label: label.trim(),
-        value: value.trim(),
-        category: selectedCategory
-      }
-    });
+      dispatch({
+        type: 'ADD_FIELD',
+        payload: {
+          id: `field-${Date.now()}`,
+          label: label.trim(),
+          value: value.trim(),
+          category: selectedCategory
+        }
+      });
       
       // Reset general fields
       setLabel('');
@@ -260,42 +274,53 @@ export function AddDetails() {
     );
   };
 
+  // Render skills form
+  const renderSkillsForm = () => {
+    return (
+      <div className="space-y-3">
+        <div>
+          <textarea
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            className="w-full p-2 border rounded-md text-sm"
+            rows={3}
+            placeholder="Enter skills separated by commas (e.g. JavaScript, React, Node.js)"
+            required
+          />
+        </div>
+      </div>
+    );
+  };
+
   // Render default form
   const renderDefaultForm = () => {
     return (
       <div className="space-y-3">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            {selectedCategory === 'skills' ? 'Skill Type' : 'Label'}
+            Label
           </label>
           <input
             type="text"
             value={label}
             onChange={(e) => setLabel(e.target.value)}
             className="w-full p-2 border rounded-md text-sm"
-            placeholder={selectedCategory === 'skills' ? 'e.g. Programming Languages' : 'e.g. Full Name'}
+            placeholder="e.g. Achievements"
             required
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            {selectedCategory === 'skills' ? 'Skills' : 'Value'}
+            Value
           </label>
           <textarea
             value={value}
             onChange={(e) => setValue(e.target.value)}
             className="w-full p-2 border rounded-md text-sm"
             rows={3}
-            placeholder={selectedCategory === 'skills' 
-              ? 'Enter skills separated by commas (e.g. JavaScript, React, Node.js)'
-              : 'Enter information'}
+            placeholder="Secured 1st prize in a hackathon"
           />
-          {selectedCategory === 'skills' && (
-            <p className="text-xs text-gray-500 mt-1">
-              Separate multiple skills with commas
-            </p>
-          )}
         </div>
       </div>
     );
@@ -341,6 +366,7 @@ export function AddDetails() {
             
             {selectedCategory === 'education' ? renderEducationForm() : 
              selectedCategory === 'experience' ? renderExperienceForm() :
+             selectedCategory === 'skills' ? renderSkillsForm() :
              renderDefaultForm()}
 
             <button

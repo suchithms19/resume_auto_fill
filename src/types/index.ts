@@ -10,7 +10,6 @@ export type ProfileCategory =
   | 'education'
   | 'experience'
   | 'skills'
-  | 'references'
   | 'custom';
 
 export interface ProfileState {

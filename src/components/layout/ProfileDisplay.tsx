@@ -8,7 +8,6 @@ const CATEGORY_LABELS: Record<ProfileCategory, string> = {
   education: 'Education',
   experience: 'Work Experience',
   skills: 'Skills',
-  references: 'References',
   custom: 'Custom Fields'
 };
 
