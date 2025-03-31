@@ -52,14 +52,14 @@ export const exampleProfileFields: ProfileField[] = [
   // Experience
   {
     id: 'experience-1',
-    label: 'Software Developer',
-    value: 'ABC Technology Inc.\nJan 2023 - Present\n- Led development of frontend applications using React and TypeScript\n- Collaborated with UX team to improve user experience\n- Implemented automated testing with Jest',
+    label: 'ABC Technology Inc.',
+    value: 'ABC Technology Inc.\nSoftware Developer\nJan 2023 - Present\nBengaluru, India\nLed development of frontend applications using React and TypeScript. Collaborated with UX team to improve user experience. Implemented automated testing with Jest.',
     category: 'experience'
   },
   {
     id: 'experience-2',
-    label: 'Intern Developer',
-    value: 'XYZ Solutions\nMay 2022 - Dec 2022\n- Assisted in developing web applications\n- Created documentation for the codebase\n- Participated in code reviews',
+    label: 'XYZ Solutions',
+    value: 'XYZ Solutions\nIntern Developer\nMay 2022 - Dec 2022\nMumbai, India\nAssisted in developing web applications. Created documentation for the codebase. Participated in code reviews.',
     category: 'experience'
   },
 

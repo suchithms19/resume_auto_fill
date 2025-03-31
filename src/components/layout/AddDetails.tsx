@@ -23,6 +23,14 @@ export function AddDetails() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   
+  // Experience specific fields
+  const [company, setCompany] = useState('');
+  const [role, setRole] = useState('');
+  const [expStartDate, setExpStartDate] = useState('');
+  const [expEndDate, setExpEndDate] = useState('');
+  const [location, setLocation] = useState('');
+  const [description, setDescription] = useState('');
+  
   const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -49,6 +57,29 @@ export function AddDetails() {
       setCollege('');
       setStartDate('');
       setEndDate('');
+    } else if (selectedCategory === 'experience') {
+      if (!company.trim() || !role.trim()) return;
+      
+      // Format the value for experience
+      const formattedValue = `${company}\n${role}\n${expStartDate} - ${expEndDate}\n${location}\n${description}`;
+      
+      dispatch({
+        type: 'ADD_FIELD',
+        payload: {
+          id: `experience-${Date.now()}`,
+          label: company.trim(),
+          value: formattedValue,
+          category: selectedCategory
+        }
+      });
+      
+      // Reset experience fields
+      setCompany('');
+      setRole('');
+      setExpStartDate('');
+      setExpEndDate('');
+      setLocation('');
+      setDescription('');
     } else {
       // For other categories
       if (!label.trim()) return;
@@ -100,7 +131,7 @@ export function AddDetails() {
             value={college}
             onChange={(e) => setCollege(e.target.value)}
             className="w-full p-2 border rounded-md text-sm"
-            placeholder="e.g. RV College of Engineering"
+            placeholder="e.g. MVJ College of Engineering"
             required
           />
         </div>
@@ -115,7 +146,7 @@ export function AddDetails() {
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               className="w-full p-2 border rounded-md text-sm"
-              placeholder="e.g. May 2021"
+              placeholder="e.g. 2021"
               required
             />
           </div>
@@ -129,10 +160,101 @@ export function AddDetails() {
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
               className="w-full p-2 border rounded-md text-sm"
-              placeholder="e.g. June 2025"
+              placeholder="e.g. 2025"
               required
             />
           </div>
+        </div>
+      </div>
+    );
+  };
+  
+  // Render experience form
+  const renderExperienceForm = () => {
+    return (
+      <div className="space-y-3">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Company Name
+          </label>
+          <input
+            type="text"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            className="w-full p-2 border rounded-md text-sm"
+            placeholder="e.g. Flux Pvt.Ltd"
+            required
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Role
+          </label>
+          <input
+            type="text"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className="w-full p-2 border rounded-md text-sm"
+            placeholder="e.g. Software Developer"
+            required
+          />
+        </div>
+        
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Start Date
+            </label>
+            <input
+              type="text"
+              value={expStartDate}
+              onChange={(e) => setExpStartDate(e.target.value)}
+              className="w-full p-2 border rounded-md text-sm"
+              placeholder="e.g. Jan 2023"
+              required
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              End Date
+            </label>
+            <input
+              type="text"
+              value={expEndDate}
+              onChange={(e) => setExpEndDate(e.target.value)}
+              className="w-full p-2 border rounded-md text-sm"
+              placeholder="e.g. Present"
+              required
+            />
+          </div>
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Location
+          </label>
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-2 border rounded-md text-sm"
+            placeholder="e.g. Bengaluru, India"
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Description
+          </label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full p-2 border rounded-md text-sm"
+            rows={4}
+            placeholder="e.g. Led development of frontend applications using React and TypeScript"
+          />
         </div>
       </div>
     );
@@ -213,10 +335,13 @@ export function AddDetails() {
             <h3 className="font-medium text-gray-900 mb-2">
               {selectedCategory === 'skills' ? 'Add Skills' : 
                selectedCategory === 'education' ? 'Add Education' : 
+               selectedCategory === 'experience' ? 'Add Work Experience' :
                'Add Information'}
             </h3>
             
-            {selectedCategory === 'education' ? renderEducationForm() : renderDefaultForm()}
+            {selectedCategory === 'education' ? renderEducationForm() : 
+             selectedCategory === 'experience' ? renderExperienceForm() :
+             renderDefaultForm()}
 
             <button
               type="submit"
@@ -224,6 +349,7 @@ export function AddDetails() {
             >
               Add {selectedCategory === 'skills' ? 'Skills' : 
                   selectedCategory === 'education' ? 'Education' : 
+                  selectedCategory === 'experience' ? 'Experience' :
                   'Information'}
             </button>
             
