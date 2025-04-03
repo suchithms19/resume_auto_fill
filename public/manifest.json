@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Fillio - Job Application Assistant",
+  "name": "Fillio - Quick job application filling",
   "version": "1.0.0",
-  "description": "Store and copy job application information for quick form filling",
+  "description": "Store and copy job application information for quick and easy form filling.",
   "action": {
-    "default_title": "Job Application Assistant"
+    "default_title": "Fillio - Quick job application filling"
   },
   "side_panel": {
     "default_path": "index.html"

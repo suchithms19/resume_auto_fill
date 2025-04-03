@@ -4,13 +4,18 @@ A Chrome extension to store and manage job application information for quick for
 
 ## Features
 
-- Modern dual-panel design with sidebar categories and profile display
-- Store personal information, education, experience, skills, and references
-- Organize information into categories
-- Quickly copy information to clipboard by clicking on any field
-- Visual feedback with highlighted items when copied
-- Comes with preset example data to get started quickly
-- Data is synced across devices using Chrome storage
+- Modern dual-panel design with sidebar categories and main content display
+- Store and manage:
+  - Personal Information
+  - Education History
+  - Work Experience
+  - Skills
+  - Other Custom Categories
+- One-click copy functionality for any stored information
+- Visual feedback when information is copied
+- Comes with example data to demonstrate usage
+- Data persistence using Chrome storage sync
+- Cross-device synchronization when signed into Chrome
 
 ## Installation
 
@@ -18,8 +23,8 @@ A Chrome extension to store and manage job application information for quick for
 
 1. Clone this repository:
    ```
-   git clone <repository-url>
-   cd job-application-assistant
+   git clone https://github.com/suchithms19/fillio
+   cd fillio
    ```
 
 2. Install dependencies:
@@ -49,40 +54,40 @@ A Chrome extension to store and manage job application information for quick for
 
 ## Usage
 
-1. Click on the extension icon in your Chrome toolbar to open the extension
-2. Browse different categories in the left sidebar (Personal, Education, Experience, etc.)
-3. Click any field in the right panel to copy its value to your clipboard
-4. Add new fields by clicking "Add New Field" at the bottom of the sidebar
-5. Fill in the field label, value, and keep or change the current category
-6. All data is automatically saved and synced if you're signed into Chrome
+1. Click the extension icon in your Chrome toolbar
+2. Navigate through categories using the left sidebar
+3. Click any field to copy its content to your clipboard
+4. Add new information using the "Add New Field" button
+5. Customize field labels and values as needed
+6. All data is automatically saved and synced across devices
 
 ## Project Structure
 
 ```
 job-application-assistant/
 ├── public/                # Static assets
-│   ├── icons/             # Extension icons
-│   └── manifest.json      # Extension manifest
+│   ├── icons/            # Extension icons
+│   └── manifest.json     # Extension manifest
 ├── src/
-│   ├── components/        # React components
-│   │   └── layout/        # UI layout components
-│   ├── context/           # Context for state management
-│   ├── hooks/             # Custom React hooks
-│   ├── types/             # TypeScript type definitions
-│   ├── utils/             # Utility functions
-│   ├── App.tsx            # Main App component
-│   └── main.tsx           # Entry point
-├── package.json           # Dependencies and scripts
-└── README.md              # This file
+│   ├── components/       # React components
+│   │   └── layout/      # UI layout components
+│   ├── context/         # Context for state management
+│   ├── hooks/          # Custom React hooks
+│   ├── types/          # TypeScript type definitions
+│   ├── utils/          # Utility functions
+│   ├── App.tsx         # Main App component
+│   └── main.tsx        # Entry point
+├── package.json        # Dependencies and scripts
+└── README.md          # Documentation
 ```
 
 ## Development
 
 This project uses:
-- React 19
+- React
 - TypeScript
-- TailwindCSS for styling
-- Vite for building and development
+- TailwindCSS
+- Vite
 
 ## Building for Production
 
