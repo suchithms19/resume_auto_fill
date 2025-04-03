@@ -305,7 +305,7 @@ export function AddDetails() {
             value={label}
             onChange={(e) => setLabel(e.target.value)}
             className="w-full p-2 border rounded-md text-sm"
-            placeholder="e.g. Achievements"
+            placeholder="e.g. Name"
             required
           />
         </div>
@@ -319,7 +319,7 @@ export function AddDetails() {
             onChange={(e) => setValue(e.target.value)}
             className="w-full p-2 border rounded-md text-sm"
             rows={3}
-            placeholder="Secured 1st prize in a hackathon"
+            placeholder="Sam Alex"
           />
         </div>
       </div>

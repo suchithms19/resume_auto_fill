@@ -4,16 +4,18 @@
   "version": "1.0.0",
   "description": "Store and copy job application information for quick form filling",
   "action": {
-    "default_popup": "index.html",
-    "default_icon": {
-      "16": "icons/icon16.svg",
-      "48": "icons/icon48.svg",
-      "128": "icons/icon128.svg"
-    }
+    "default_title": "Job Application Assistant"
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "permissions": [
     "storage",
-    "clipboardWrite"
+    "clipboardWrite",
+    "sidePanel"
   ],
   "icons": {
     "16": "icons/icon16.svg",
